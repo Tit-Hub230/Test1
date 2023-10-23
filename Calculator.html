@@ -287,53 +287,6 @@
                 $("input[type='text']").val(racun);
             }
         }
-        function pretvorba(sis){
-            var temp = "";
-            var zacetek = 0;
-            var konec = racun.length; 
-            run = true;
-            if(racun.length == 0)
-                run = false;
-            while(run){
-                //if(racun == "") break;
-                for(var i = zacetek; i < racun.length+1; i++){
-                    if(znaki.slice(znaki.length-17).indexOf(racun[i]) != -1){
-                        zacetek = i;
-                        break;
-                    }
-                    if(i == racun.length-1 || racun.length == i) {
-                        run = false;
-                        break;
-                    }
-                }
-                if(temp == "") temp += racun.substring(0, zacetek);
-                console.log(racun[zacetek]);
-                if(konec != racun.length)
-                    temp += racun.substring(konec, zacetek);
-                konec = racun.length;
-                for(var i = zacetek; i < racun.length; i++){
-                    if(znaki.slice(znaki.length-17).indexOf(racun[i]) == -1){
-                        konec = i;
-                        break;
-                    }
-                }
-                var x = sistemi(sis, racun.substring(zacetek, konec)).toString();
-                if(x.indexOf(".") != -1){
-                    for(var i = x.length-1; i > 0; i--){
-                        if(x[i] == '0'){
-                            x = x.substring(0, x.length-1);
-                        }
-                        else break;
-                    }
-                }
-                if(zacetek == racun.length-1 && !(/[0-9A-F]/.test(racun[zacetek]))) break;
-                temp += x;
-                zacetek = konec;
-                if(konec == racun.length) break;
-            } 
-            temp += racun.substring(konec);
-            racun = temp;
-        }
         function sistemi(sis, x){
             var y = "";
             var temp = "";
